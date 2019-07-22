@@ -6,7 +6,15 @@
     <h3>{{ category }}</h3>
     <ul>
     {% for item in items %}
-        <li>{{item}}</li>
+        <li>
+            {% if item.extra_for %}
+                {{item.name}}
+            {% elif category == 'Toppings' %}
+                {{item.name}}
+            {% else %}
+                {{item}}
+            {% endif %}
+        </li>
     {% endfor item %}
     </ul>
 {% endfor category%}
