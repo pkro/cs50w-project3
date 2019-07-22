@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 # Regular Pizza, Sicilian Pizza, Subs, Salads...
 class MenuCategory(models.Model):
     name = models.CharField(max_length=64)
+    menu_order = models.IntegerField()
 
     def __str__(self):
         return f"{self.name}"
@@ -23,16 +24,18 @@ class MenuItem(models.Model):
                     , Small/Normal: {self.price}/Large: {self.price_large}'''
 
 class Cart(models.Model):
+    pass
     # customer_id
-    created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(auto_now=True)
-    active = models.BooleanField(default=True)
+    # created_on = models.DateTimeField(auto_now_add=True)
+    # updated_on = models.DateTimeField(auto_now=True)
+    # active = models.BooleanField(default=True)
 
 class CartItem(models.Model):
-    cart = models.ManyToManyField('Cart')
-    item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
-    # Cart needs its own extra_for referring to items in the cart
-    extra_for = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
+    pass
+    # cart = models.ManyToManyField('Cart')
+    # item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+    # # Cart needs its own extra_for referring to items in the cart
+    # extra_for = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
 
     
     
