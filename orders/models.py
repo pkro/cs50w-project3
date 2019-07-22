@@ -24,10 +24,9 @@ class MenuItem(models.Model):
 
 class Cart(models.Model):
     # customer_id
-    # created_on
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
-
-    pass
 
 class CartItem(models.Model):
     cart = models.ManyToManyField('Cart')
