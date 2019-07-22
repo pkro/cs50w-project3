@@ -9,6 +9,8 @@ class MenuCategory(models.Model):
         return f"{self.name}"
 
 # (Regular Pizza) Cheese, 1 topping, 2 toppings, (Subs) Cheese, italian etc
+# For now, add all Pizza toppings to regular pizza, since they have no price or other difference
+# Advantage: Add expensive toppings with extra price if necessary later
 class MenuItem(models.Model):
     name = models.CharField(max_length=64)
     menu_category = models.ForeignKey(MenuCategory, on_delete=models.CASCADE)
