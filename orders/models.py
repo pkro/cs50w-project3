@@ -19,7 +19,7 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return f'''{self.menu_category} - {self.name}
-                    { ', extra for ' + self.extra_for if self.extra_for else ''}
+                    { ', extra for ' + self.extra_for.name if self.extra_for else ''}
                     , Small/Normal: {self.price}/Large: {self.price_large}'''
 
 # https://stackoverflow.com/questions/4910905/in-django-how-do-you-make-a-model-refer-to-itself
