@@ -1,0 +1,15 @@
+{% extends 'orders/base.html' %}
+
+{%block content%}
+
+{% for category, items in menu.items %}
+    <h3>{{ category }}</h3>
+    <ul>
+    {% for item in items %}
+        <li>{{item}}</li>
+    {% endfor item %}
+    </ul>
+{% endfor category%}
+
+{% endblock content %}
+    
