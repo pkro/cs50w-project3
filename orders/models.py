@@ -9,14 +9,13 @@ class MenuCategory(models.Model):
         return f"{self.name}"
 
 # (Regular Pizza) Cheese, 1 topping, 2 toppings, (Subs) Cheese, italian etc
-# For now, add all Pizza toppings to regular pizza, since they have no price or other difference
-# Advantage: Add expensive toppings with extra price if necessary later
 class MenuItem(models.Model):
     name = models.CharField(max_length=64)
     menu_category = models.ForeignKey(MenuCategory, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=4, decimal_places=2)
-    price_large = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+    price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    price_large = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     extra_for = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
+    is_topping = models.BooleanField(choices=((True, 'Yes'), (False, 'No')), default=False)
 
     def __str__(self):
         return f"{self.menu_category} - {self.name}, extra for {self.extra_for} Small/Normal: {self.price}/Large: {self.price_large}"
