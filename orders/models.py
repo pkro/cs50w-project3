@@ -11,7 +11,7 @@ class MenuCategory(models.Model):
 # (Regular Pizza) Cheese, 1 topping, 2 toppings, (Subs) Cheese, italian etc
 class MenuItem(models.Model):
     name = models.CharField(max_length=64)
-    menu_category = models.ForeignKey(MenuCategory, on_delete=models.CASCADE)
+    menu_category = models.ForeignKey(MenuCategory, on_delete=models.CASCADE, blank=True, null=True)
     price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     price_large = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     extra_for = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
