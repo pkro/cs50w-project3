@@ -18,7 +18,12 @@ class MenuItem(models.Model):
     is_topping = models.BooleanField(choices=((True, 'Yes'), (False, 'No')), default=False)
 
     def __str__(self):
-        return f"{self.menu_category} - {self.name}, extra for {self.extra_for} Small/Normal: {self.price}/Large: {self.price_large}"
+        if self.is_topping:
+            return f'Pizza topping: {self.name}'
+        else:
+            return f'''{self.menu_category} - {self.name}
+                    { ', extra for ' + self.extra_for if self.extra_for else ''}
+                    , Small/Normal: {self.price}/Large: {self.price_large}'''
 
 # https://stackoverflow.com/questions/4910905/in-django-how-do-you-make-a-model-refer-to-itself
 class Cart(models.Model):
