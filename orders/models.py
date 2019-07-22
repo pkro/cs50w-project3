@@ -16,13 +16,9 @@ class MenuItem(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     price_large = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     extra_for = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
-    is_topping = models.BooleanField(choices=((True, 'Yes'), (False, 'No')), default=False)
 
     def __str__(self):
-        if self.is_topping:
-            return f'Pizza topping: {self.name}'
-        else:
-            return f'''{self.menu_category} - {self.name}
+        return f'''{self.menu_category} - {self.name}
                     { ', extra for ' + self.extra_for if self.extra_for else ''}
                     , Small/Normal: {self.price}/Large: {self.price_large}'''
 
