@@ -22,10 +22,17 @@ class MenuItem(models.Model):
                     { ', extra for ' + self.extra_for.name if self.extra_for else ''}
                     , Small/Normal: {self.price}/Large: {self.price_large}'''
 
-# https://stackoverflow.com/questions/4910905/in-django-how-do-you-make-a-model-refer-to-itself
 class Cart(models.Model):
     # customer_id
+    # created_on
+    active = models.BooleanField(default=True)
+
+    pass
+
+class CartItem(models.Model):
+    cart = models.ManyToManyField('Cart')
     item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+    # Cart needs its own extra_for referring to items in the cart
     extra_for = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
 
     
