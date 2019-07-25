@@ -1,0 +1,41 @@
+body { 
+    background-image: url('../images/pizza_bg.jpg');
+}
+
+.menu {
+    
+}
+
+.card {
+    background-color: rgba($color: #f1e0e0, $alpha: 0.4);
+}
+.navbar-brand {
+    font-size: 1.5em;
+    
+}
+.navbar {
+    opacity: 0.7;
+    margin: 2px;
+}
+#myAccordion {
+    margin-top:5px;
+}
+.panel-heading a:after {
+    font-family:'Glyphicons Halflings';
+    content:"\2212";
+    float: right;
+    color: grey;
+}
+.panel-heading a.collapsed:after {
+    content:"\2b";
+}
+
+.panel-heading a:after {
+  font-family:'Glyphicons Halflings';
+  content:"\2212";
+  float: right;
+  color: grey;
+}
+.panel-heading a.collapsed:after {
+  content:"\2b";
+}

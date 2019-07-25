@@ -1,23 +1,58 @@
-{% extends 'orders/base.html' %}
-
+{% extends 'orders/base.html' %} 
 {%block content%}
 
-{% for category, items in menu.items %}
-    <h3>{{ category }}</h3>
-    <ul>
-    {% for item in items %}
-        <li>
-            {% if item.extra_for %}
-                {{item.name}}
-            {% elif category == 'Toppings' %}
-                {{item.name}}
-            {% else %}
-                {{item}}
-            {% endif %}
-        </li>
-    {% endfor item %}
-    </ul>
-{% endfor category%}
+<!--- Menu sidebar left ---------------------------------------------------->
+<div class="col-sm-4 panel-group" id="myAccordion">
+  {% for category, items in menu.items %}
+  <div class="card">
+    <div class="panel panel-default" id="panel{{ items.categoryId }}">
+      <button
+        type="button"
+        class="btn"
+        data-toggle="collapse"
+        data-target="#collapse{{ items.categoryId }}"
+      >
+        <div class="card-header" id="heading{{ items.categoryId }}">
+          {{ category }}
+        </div>
+      </button>
+
+      <div
+        id="collapse{{ items.categoryId }}"
+        class="panel-collapse collapse in"
+        aria-labelledby="heading{{ items.categoryId }}"
+        data-parent="#myAccordion"
+      >
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            {% for item in items.menuItems %}
+            <li class="list-group-item">
+              {% if item.extra_for %}
+              {{ item.name }}
+              {% elif category == 'Toppings' %}
+              {{ item.name }}
+              {% else %}
+              {{ item.name }}
+              {% endif %}
+            </li>
+            {% endfor item %}
+          </ul>
+        </div>
+        <!-- card-body-->
+      </div>
+      <!--collapse-->
+    </div>
+  </div>
+  <!-- card -->
+  {% endfor category%}
+</div>
+
+<!-- myAccordion-->
+
+<!--- Cart sidebar right ---------------------------------------------------->
+
+<div class="cart col-sm-4 panel-group">
+<h1>Cart</h1>
+
 
 {% endblock content %}
-    
