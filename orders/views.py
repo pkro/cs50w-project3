@@ -4,11 +4,13 @@ from orders.models import MenuItem, MenuCategory
 
 # Create your views here.
 def index(request):
-    menuCategories = MenuCategory.objects.all()
+    categories = MenuCategory.objects.all()
     menu = {}
-    for category in menuCategories:
-        menu[category.name] = MenuItem.objects.filter(category__name=category.name)
-
+    for category in categories:
+        menu[category.name] = {
+            'categoryId': category.id,
+            'menuItems': MenuItem.objects.filter(category__name=category.name),
+        }
     context = {
         'menu': menu,
     }
