@@ -6,16 +6,16 @@
   {% for category, items in menu.items %}
   <div class="card">
     <div class="panel panel-default" id="panel{{ items.categoryId }}">
-      <button
-        type="button"
-        class="btn"
+      <a 
+        role="button"
+        class="clickable"
         data-toggle="collapse"
         data-target="#collapse{{ items.categoryId }}"
       >
         <div class="card-header" id="heading{{ items.categoryId }}">
           {{ category }}
         </div>
-      </button>
+      </a>
 
       <div
         id="collapse{{ items.categoryId }}"
@@ -26,10 +26,8 @@
         <div class="card-body">
           <ul class="list-group list-group-flush">
             {% for item in items.menuItems %}
-            <li class="list-group-item">
+            <li class="list-group-item submenu">
               {% if item.extra_for %}
-              {{ item.name }}
-              {% elif category == 'Toppings' %}
               {{ item.name }}
               {% else %}
               {{ item.name }}
@@ -51,7 +49,7 @@
 
 <!--- Cart sidebar right ---------------------------------------------------->
 
-<div class="cart col-sm-4 panel-group">
+<div class="col-sm-4 panel-group">
 <h1>Cart</h1>
 
 
