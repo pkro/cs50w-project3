@@ -22,8 +22,6 @@ body {
 
 .card-body {
     padding: 0px 0px 0px 0px;
-    
-    
 }
 .navbar-brand {
     font-size: 1.5em;
@@ -39,6 +37,18 @@ body {
 #myAccordion {
     margin-top:5px;
 }
+
+.topping_row:nth-of-type(even) {
+    background-color: rgba($color: rgb(221, 184, 115), $alpha: 1.0);
+}
+.topping_row:nth-of-type(odd) {
+    background-color: rgba($color: rgb(219, 169, 75), $alpha: 1.0);
+}
+
+.modal-content {
+    background-color: rgba($color: #C1861B, $alpha: 0.7);
+}
+
 .panel-heading a:after {
     font-family:'Glyphicons Halflings';
     content:"\2212";

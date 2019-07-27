@@ -37,6 +37,18 @@ body {
   margin-top: 5px;
 }
 
+.topping_row:nth-of-type(even) {
+  background-color: #ddb873;
+}
+
+.topping_row:nth-of-type(odd) {
+  background-color: #dba94b;
+}
+
+.modal-content {
+  background-color: rgba(193, 134, 27, 0.7);
+}
+
 .panel-heading a:after {
   font-family: 'Glyphicons Halflings';
   content: "\2212";
