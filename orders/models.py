@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 # Regular Pizza, Sicilian Pizza, Subs, Salads...
 class MenuCategory(models.Model):
     name = models.CharField(max_length=64)
+    # order of the items in the menu
     order = models.IntegerField()
 
     def __str__(self):
@@ -16,6 +17,7 @@ class MenuItem(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     price_large = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     extra_for = models.ForeignKey('self', blank=True, null=True, on_delete=models.CASCADE)
+    toppings_required = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return f'''{self.category} - {self.name}
