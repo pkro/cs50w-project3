@@ -1,8 +1,8 @@
 {% extends 'orders/base.html' %} 
 {%block content%}
-
+<div class="row">
 <!--- Menu sidebar left ---------------------------------------------------->
-<div class="col-sm-4 panel-group" id="myAccordion">
+<div class="col-sm-6 panel-group" id="myAccordion">
   {% for category, items in menu.items %}
   <div class="card">
     <div class="panel panel-default" id="panel{{ items.categoryId }}">
@@ -27,11 +27,27 @@
           <ul class="list-group list-group-flush">
             {% for item in items.menuItems %}
             <li class="list-group-item submenu">
-              {% if item.extra_for %}
-              {{ item.name }}
-              {% else %}
-              {{ item.name }}
-              {% endif %}
+              <div class="addable">
+                <div class="itemname">
+                  {% if item.extra_for %}
+                  {{ item.name }}
+                  {% else %}
+                  {{ item.name }}
+                  {% endif %}
+                </div>
+                <div>
+                  <button type="button" 
+                    class="btn btn-primary addCartButton" 
+                    {% if item.toppings_required > 0 %}
+                      data-toggle="modal" 
+                      data-target="#addToppings"
+                    {% endif %}
+                      data-toppings={{ item.toppings_required }}
+                      id="{{ item.id }}">
+                      Add to cart
+                  </button>
+                </div>
+              </div>
             </li>
             {% endfor item %}
           </ul>
@@ -44,13 +60,39 @@
   <!-- card -->
   {% endfor category%}
 </div>
+</div> <!---row -->
+<!-- end myAccordion-->
 
-<!-- myAccordion-->
-
-<!--- Cart sidebar right ---------------------------------------------------->
-
-<div class="col-sm-4 panel-group">
-<h1>Cart</h1>
+<!-- Modal  Toppings-->
+<div class="modal fade" id="addToppings" tabindex="-1" role="dialog" aria-labelledby="addToppingsTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Please select <span id="toppings_required_disp">0</span> toppings</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% for topping in toppings %}
+          <div class="topping_row row">
+            <div  class="col-10">
+                {{ topping.name }} 
+          </div>
+            <div class="col-2">
+                <input type="checkbox" id="toppings_checkbox" value="{{ topping.id }}">
+              
+            </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 {% endblock content %}
